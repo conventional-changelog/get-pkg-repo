@@ -1,0 +1,41 @@
+{
+  "name": "get-pkg-repo",
+  "version": "0.0.0",
+  "description": "Get repository url from package json data",
+  "homepage": "https://github.com/stevemao/get-pkg-repo",
+  "author": {
+    "name": "Steve Mao",
+    "email": "maochenyan@gmail.com",
+    "url": "https://github.com/stevemao"
+  },
+  "repository": "stevemao/get-pkg-repo",
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "keywords": [
+    "get-pkg-repo",
+    "normalize",
+    "fix",
+    "url",
+    "package",
+    "repository"
+  ],
+  "dependencies": {
+    "github-url-from-git": "^1.4.0",
+    "lodash.foreach": "^3.0.1",
+    "meow": "^2.0.0",
+    "normalize-package-data": "^1.0.3",
+    "through2": "^0.6.3"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "bin": {
+    "get-pkg-repo": "cli.js"
+  }
+}
