@@ -17,6 +17,14 @@ var typo = {
 
 var bad = {};
 
+var bad2 = {
+  repository: 'badprotocal://a.com'
+};
+
+var badProtocol = {
+  repository: 'badprotocol://a/b'
+};
+
 var nonGithub = {
   repository: 'bitbucket.org/a/b.git'
 };
@@ -42,9 +50,19 @@ it('should work if there is a typo', function() {
   assert.equal(url, 'https://github.com/a/b');
 });
 
-it('should return an empty string', function() {
+it('has no repository', function() {
   var url = getPkgRepo(bad);
   assert.equal(url, '');
+});
+
+it('cannot be parsed', function() {
+  var url = getPkgRepo(bad2);
+  assert.equal(url, '');
+});
+
+it('should fix bad protocal', function() {
+  var url = getPkgRepo(badProtocol);
+  assert.equal(url, 'http://a/b');
 });
 
 it('should work with non-github repo', function() {
