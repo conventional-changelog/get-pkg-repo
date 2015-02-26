@@ -5,7 +5,6 @@ var getPkgRepo = require('./');
 
 var good = {
   repository: 'https://github.com/a/b'
-
 };
 
 var good2 = {

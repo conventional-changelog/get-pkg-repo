@@ -56,7 +56,7 @@ If you want to autofix your typical typo pass true. See [the list of typos](typo
 
 Type: `function`
 
-If `fixTypo` is `true` you can also pass a warn function. Eg: `console.warn`.
+If `fixTypo` is `true` you can also pass a warn function. Eg: `console.warn.bind(console)`.
 
 
 ## CLI
