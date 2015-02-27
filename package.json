@@ -25,15 +25,18 @@
   "dependencies": {
     "github-url-from-git": "^1.4.0",
     "lodash.foreach": "^3.0.1",
-    "meow": "^2.0.0",
+    "meow": "^3.1.0",
     "normalize-package-data": "^1.0.3",
     "through2": "^0.6.3"
   },
   "devDependencies": {
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.6",
     "mocha": "*"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "coverage": "istanbul cover _mocha --report lcovonly -- -R spec && rm -rf ./coverage"
   },
   "bin": {
     "get-pkg-repo": "cli.js"

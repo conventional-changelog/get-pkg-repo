@@ -1,4 +1,4 @@
-#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image]
+#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][coverall-image]][coverall-url]
 
 > Get repository url from package json data
 
@@ -81,10 +81,11 @@ https://github.com/stevemao/get-pkg-repo
 
 MIT © [Steve Mao](https://github.com/stevemao)
 
-
-[npm-url]: https://npmjs.org/package/get-pkg-repo
 [npm-image]: https://badge.fury.io/js/get-pkg-repo.svg
-[travis-url]: https://travis-ci.org/stevemao/get-pkg-repo
+[npm-url]: https://npmjs.org/package/get-pkg-repo
 [travis-image]: https://travis-ci.org/stevemao/get-pkg-repo.svg?branch=master
-[daviddm-url]: https://david-dm.org/stevemao/get-pkg-repo.svg?theme=shields.io
-[daviddm-image]: https://david-dm.org/stevemao/get-pkg-repo
+[travis-url]: https://travis-ci.org/stevemao/get-pkg-repo
+[daviddm-image]: https://david-dm.org/stevemao/get-pkg-repo.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/stevemao/get-pkg-repo
+[coverall-image]: https://coveralls.io/repos/stevemao/get-pkg-repo/badge.svg
+[coverall-url]: https://coveralls.io/r/stevemao/get-pkg-repo
