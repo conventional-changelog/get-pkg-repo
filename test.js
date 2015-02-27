@@ -29,6 +29,14 @@ var nonGithub = {
   repository: 'bitbucket.org/a/b.git'
 };
 
+var nonGithub2 = {
+  repository: 'git@bitbucket.org/a/b'
+};
+
+var nonGithub3 = {
+  repository: 'https://bitbucket.org/a/b'
+};
+
 it('should get repo url', function() {
   var url = getPkgRepo(good);
   assert.equal(url, 'https://github.com/a/b');
@@ -68,4 +76,14 @@ it('should fix bad protocal', function() {
 it('should work with non-github repo', function() {
   var url = getPkgRepo(nonGithub);
   assert.equal(url, 'http://bitbucket.org/a/b');
+});
+
+it('should work with non-github repo with an @', function() {
+  var url = getPkgRepo(nonGithub2);
+  assert.equal(url, 'http://bitbucket.org/a/b');
+});
+
+it('should work with https non-github repo', function() {
+  var url = getPkgRepo(nonGithub3);
+  assert.equal(url, 'https://bitbucket.org/a/b');
 });
