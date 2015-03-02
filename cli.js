@@ -22,9 +22,7 @@ if (cli.input[0]) {
   };
 
   console.log(getPkgRepo(pkgData, cli.flags.fixTypo));
-}
-
-else {
+} else {
   process.stdin
     .pipe(through(function(chunk, enc, callback) {
       var url = getPkgRepo(chunk.toString(), cli.flags.fixTypo);

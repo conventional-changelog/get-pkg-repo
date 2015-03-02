@@ -26,12 +26,11 @@ function getPkgRepo(pkgData, fixTypo, warn) {
 
   try {
     pkgData = JSON.parse(pkgData);
-  }
-  catch (e) {}
+  } catch (e) {}
 
   if (fixTypo && !pkgData.repository) {
     forEach(typos, function(val) {
-      if (pkgData[val]){
+      if (pkgData[val]) {
         warn(pkgData[val] + ' should probably be repository.');
         pkgData.repository = pkgData[val];
       }
