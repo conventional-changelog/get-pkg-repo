@@ -31,7 +31,7 @@ function getPkgRepo(pkgData, fixTypo, warn) {
   if (fixTypo && !pkgData.repository) {
     forEach(typos, function(val) {
       if (pkgData[val]) {
-        warn(pkgData[val] + ' should probably be repository.');
+        warn(val + ' should probably be repository.');
         pkgData.repository = pkgData[val];
         return false;
       }
