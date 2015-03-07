@@ -2,39 +2,51 @@
 var assert = require('assert');
 var getPkgRepo = require('./');
 
-var good = {
-  repository: 'https://github.com/a/b'
-};
+var good;
+var good2;
+var typo;
+var bad;
+var bad2;
+var badProtocol;
+var nonGithub;
+var nonGithub2;
+var nonGithub3;
 
-var good2 = {
-  repository: 'a/b'
-};
+beforeEach(function() {
+  good = {
+    repository: 'https://github.com/a/b'
+  };
 
-var typo = {
-  repo: 'a/b'
-};
+  good2 = {
+    repository: 'a/b'
+  };
 
-var bad = {};
+  typo = {
+    repo: 'a/b'
+  };
 
-var bad2 = {
-  repository: 'badprotocal://a.com'
-};
+  bad = {};
 
-var badProtocol = {
-  repository: 'badprotocol://a/b'
-};
+  bad2 = {
+    repository: 'badprotocal://a.com'
+  };
 
-var nonGithub = {
-  repository: 'bitbucket.org/a/b.git'
-};
+  badProtocol = {
+    repository: 'badprotocol://a/b'
+  };
 
-var nonGithub2 = {
-  repository: 'git@bitbucket.org/a/b'
-};
+  nonGithub = {
+    repository: 'bitbucket.org/a/b.git'
+  };
 
-var nonGithub3 = {
-  repository: 'https://bitbucket.org/a/b'
-};
+  nonGithub2 = {
+    repository: 'git@bitbucket.org/a/b'
+  };
+
+  nonGithub3 = {
+    repository: 'https://bitbucket.org/a/b'
+  };
+});
 
 it('should get repo url', function() {
   var url = getPkgRepo(good);
@@ -55,6 +67,22 @@ it('should work with a json', function() {
 it('should work if there is a typo', function() {
   var url = getPkgRepo(typo, true);
   assert.equal(url, 'https://github.com/a/b');
+});
+
+it('should warn if there is a typo', function(done) {
+  getPkgRepo(typo, true, function(warning) {
+    assert.equal(warning, 'repo should probably be repository.');
+    done();
+  });
+});
+
+it('should print warning by `console.warn.bind(console)`', function(done) {
+  console.warn = function(data) {
+    assert.equal(data, 'repo should probably be repository.');
+    done();
+  };
+
+  getPkgRepo(typo, true, true);
 });
 
 it('has no repository', function() {
