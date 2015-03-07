@@ -22,7 +22,11 @@ function parseNonGithubUrl(nonGithubUrl) {
 }
 
 function getPkgRepo(pkgData, fixTypo, warn) {
-  warn = warn || function() {};
+  if (warn === true) {
+    warn = console.warn.bind(console);
+  } else {
+    warn = warn || function() {};
+  }
 
   try {
     pkgData = JSON.parse(pkgData);

@@ -50,13 +50,13 @@ Type: `string` or `json`
 
 Type: `boolean`
 
-If you want to autofix your typical typo pass true. See [the list of typos](typos.json).
+If you want to fix your typical typos automatically, pass true. See [the list of predefined typos](typos.json).
 
 ### warn
 
-Type: `function`
+Type: `function` or `boolean`
 
-If `fixTypo` is `true` you can also pass a warn function. Eg: `console.warn.bind(console)`.
+If `fixTypo` is `true` you can also pass a warn function. `console.warn.bind(console)` is passed if it's true.
 
 
 ## CLI
