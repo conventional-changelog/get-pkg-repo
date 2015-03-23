@@ -61,7 +61,15 @@ If `fixTypo` is `true` you can also pass a warn function. `console.warn.bind(con
 
 ## CLI
 
-You can use cli to see what your url will look like after being parsed. You can write more than one repository urls at a time.
+You can use cli to see what your url will look like after being parsed.
+
+You can enter interactive mode by typing
+
+```sh
+$ get-pkg-repo
+```
+
+You can use the command followed by a url. You can write more than one repository urls at a time.
 
 ```sh
 $ npm install --global get-pkg-repo
