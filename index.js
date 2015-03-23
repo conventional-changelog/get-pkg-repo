@@ -17,7 +17,7 @@ function parseNonGithubUrl(nonGithubUrl) {
     return protocol + '//' + (nonGithubUrl.host || '') +
       nonGithubUrl.path.replace(/\.git$/, '');
   } catch (e) {
-    return '';
+    throw new Error('Cannot parse non Github Url');
   }
 }
 
@@ -47,7 +47,7 @@ function getPkgRepo(pkgData, fixTypo, warn) {
   var url = pkgData.repository && pkgData.repository.url;
 
   if (typeof url !== 'string') {
-    return '';
+    throw new Error('Cannot get repository');
   }
 
   return url.indexOf('github') > -1 ?

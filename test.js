@@ -86,13 +86,20 @@ it('should print warning by `console.warn.bind(console)`', function(done) {
 });
 
 it('has no repository', function() {
-  var url = getPkgRepo(bad);
-  assert.equal(url, '');
+  try {
+    getPkgRepo(bad);
+  } catch (e) {
+    assert.equal(e.toString(), 'Error: Cannot get repository');
+  }
+
 });
 
 it('cannot be parsed', function() {
-  var url = getPkgRepo(bad2);
-  assert.equal(url, '');
+  try {
+    getPkgRepo(bad2);
+  } catch (e) {
+    assert.equal(e.toString(), 'Error: Cannot parse non Github Url');
+  }
 });
 
 it('should fix bad protocal', function() {
