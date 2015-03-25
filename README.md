@@ -40,7 +40,7 @@ fs.readFile('package.json', function(err, pkgData) {
 
 getPkgRepo(pkgData, [fixTypo, [warn]])
 
-Returns a string. An empty string `''` will be returned if repository url is not found or cannot be parsed properly.
+Returns a string.
 
 ### pkgData
 
