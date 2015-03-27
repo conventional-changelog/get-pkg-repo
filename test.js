@@ -85,16 +85,16 @@ it('should print warning by `console.warn.bind(console)`', function(done) {
   getPkgRepo(typo, true, true);
 });
 
-it('has no repository', function() {
+it('should error if cannot get repository', function() {
   try {
     getPkgRepo(bad);
   } catch (e) {
-    assert.equal(e.toString(), 'Error: Cannot get repository');
+    assert.equal(e.toString(), 'Error: No repository: Could not get url');
   }
 
 });
 
-it('cannot be parsed', function() {
+it('should not be parsed', function() {
   try {
     getPkgRepo(bad2);
   } catch (e) {
