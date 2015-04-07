@@ -1,4 +1,4 @@
-#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][coverall-image]][coverall-url]
+#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][coveralls-image]][coveralls-url]
 
 > Get repository url from package json data
 
@@ -95,5 +95,5 @@ MIT © [Steve Mao](https://github.com/stevemao)
 [travis-url]: https://travis-ci.org/stevemao/get-pkg-repo
 [daviddm-image]: https://david-dm.org/stevemao/get-pkg-repo.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/stevemao/get-pkg-repo
-[coverall-image]: https://coveralls.io/repos/stevemao/get-pkg-repo/badge.svg
-[coverall-url]: https://coveralls.io/r/stevemao/get-pkg-repo
+[coveralls-image]: https://coveralls.io/repos/stevemao/get-pkg-repo/badge.svg
+[coveralls-url]: https://coveralls.io/r/stevemao/get-pkg-repo
