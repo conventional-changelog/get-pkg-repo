@@ -6,7 +6,6 @@ var good;
 var good2;
 var typo;
 var bad;
-var bad2;
 var badProtocol;
 var nonGithub;
 var nonGithub2;
@@ -26,10 +25,6 @@ beforeEach(function() {
   };
 
   bad = {};
-
-  bad2 = {
-    repository: 'badprotocal://a.com'
-  };
 
   badProtocol = {
     repository: 'badprotocol://a/b'
@@ -92,14 +87,6 @@ it('should error if cannot get repository', function() {
     assert.equal(e.toString(), 'Error: No repository: Could not get url');
   }
 
-});
-
-it('should not be parsed', function() {
-  try {
-    getPkgRepo(bad2);
-  } catch (e) {
-    assert.equal(e.toString(), 'Error: Cannot parse non Github Url');
-  }
 });
 
 it('should fix bad protocal', function() {
