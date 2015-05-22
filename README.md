@@ -67,9 +67,12 @@ You can enter interactive mode by typing
 
 ```sh
 $ get-pkg-repo
+github.com/stevemao/get-pkg-repo
+https://github.com/stevemao/get-pkg-repo
+
 ```
 
-You can also validate your package.json by using the command followed by a package.json path. You can write more than one path at a time.
+You can also validate the repository url in your package.json by using the command followed by a package.json path. You can specify more than one path at a time.
 
 ```sh
 $ npm install --global get-pkg-repo

@@ -8,7 +8,7 @@ var through = require('through2');
 
 var cli = meow({
   help: [
-    'Practice writing repoitory url or test a package.json file.',
+    'Practice writing repoitory url or validate the repository url in a package.json file.',
     'If used without specifying a package.json file path, you will enter an interactive shell.',
     'Otherwise, the normalized urls in the package.json files are printed.',
     '',
