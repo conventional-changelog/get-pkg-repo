@@ -1,37 +1,49 @@
 #!/usr/bin/env node
 'use strict';
 var forEach = require('lodash.foreach');
-var meow = require('meow');
+var fs = require('fs');
 var getPkgRepo = require('./');
+var meow = require('meow');
 var through = require('through2');
 
 var cli = meow({
   help: [
+    'Practice writing repoitory url or test a package.json file.',
+    'If used without specifying a package.json file path, you will enter an interactive shell.',
+    'Otherwise, the normalized urls in the package.json files are printed.',
+    '',
     'Usage',
-    '  get-pkg-repo [--fix-typo] [--warn] [<url>...]',
+    '  get-pkg-repo [--fix-typo] [--warn]',
+    '  get-pkg-repo [--fix-typo] [--warn] <path> [<path> ...]',
+    '  cat <path> | get-pkg-repo [--fix-typo] [--warn]',
     '',
     'Examples',
     '  get-pkg-repo',
-    '  get-pkg-repo bitbucket.org/a/b.git',
+    '  get-pkg-repo package.json',
     '  cat package.json | get-pkg-repo --fix-typo'
   ].join('\n')
 });
 
 var flags = cli.flags;
+var fixTypo = flags.fixTypo;
+var warn = flags.warn;
+var input = cli.input;
 
 if (process.stdin.isTTY) {
-  if (cli.input[0]) {
-    forEach(cli.input, function(repo) {
+  if (input[0]) {
+    forEach(input, function(path) {
       var url;
-      var pkgData = {
-        repository: repo
-      };
-      try {
-        url = getPkgRepo(pkgData, flags.fixTypo, flags.warn);
-        console.log(url);
-      } catch (e) {
-        console.error(e.toString());
-      }
+      fs.readFile(path, 'utf8', function(err, data) {
+        if (err) {
+          console.error(err);
+        }
+        try {
+          url = getPkgRepo(data, fixTypo, warn);
+          console.log(path + ': ' + url);
+        } catch (e) {
+          console.error(path + ': ' + e.toString());
+        }
+      });
     });
   } else {
     process.stdin
@@ -41,7 +53,7 @@ if (process.stdin.isTTY) {
           repository: chunk.toString()
         };
         try {
-          url = getPkgRepo(pkgData, flags.fixTypo, flags.warn);
+          url = getPkgRepo(pkgData, fixTypo, warn);
           callback(null, url + '\n');
         } catch (e) {
           console.error(e.toString());
@@ -55,7 +67,7 @@ if (process.stdin.isTTY) {
     .pipe(through(function(chunk, enc, callback) {
       var url;
       try {
-        url = getPkgRepo(chunk.toString(), flags.fixTypo, flags.warn);
+        url = getPkgRepo(chunk.toString(), fixTypo, warn);
       } catch (e) {
         console.error(e.toString());
         process.exit(1);

@@ -69,17 +69,13 @@ You can enter interactive mode by typing
 $ get-pkg-repo
 ```
 
-You can use the command followed by a url. You can write more than one repository urls at a time.
+You can also validate your package.json by using the command followed by a package.json path. You can write more than one path at a time.
 
 ```sh
 $ npm install --global get-pkg-repo
-$ get-pkg-repo bitbucket.org/a/b.git
+$ get-pkg-repo package.json
 http://bitbucket.org/a/b
-```
-
-You can also validate your package.json
-
-```sh
+# or
 $ cat package.json | get-pkg-repo --fix-typo
 https://github.com/stevemao/get-pkg-repo
 ```
