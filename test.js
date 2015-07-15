@@ -2,109 +2,98 @@
 var assert = require('assert');
 var getPkgRepo = require('./');
 
-var good;
-var good2;
-var typo;
-var bad;
-var badProtocol;
-var nonGithub;
-var nonGithub2;
-var nonGithub3;
+var githubHttp = {
+  repository: 'http://github.com/a/b'
+};
 
-beforeEach(function() {
-  good = {
-    repository: 'https://github.com/a/b'
-  };
+var githubHttps = {
+  repository: 'https://github.com/a/b'
+};
 
-  good2 = {
-    repository: 'a/b'
-  };
+var githubSsh = {
+  repository: 'git@github.com:joyent/node.git'
+};
 
-  typo = {
-    repo: 'a/b'
-  };
+var githubSvn = {
+  repository: 'https://github.com/joyent/node'
+};
 
-  bad = {};
+var githubShort = {
+  repository: 'a/b'
+};
 
-  badProtocol = {
-    repository: 'badprotocol://a/b'
-  };
+var bitbucket = {
+  repository: 'https://bitbucket.org/a/b.git'
+};
 
-  nonGithub = {
-    repository: 'bitbucket.org/a/b.git'
-  };
+var typo = {
+  repo: 'a/b'
+};
 
-  nonGithub2 = {
-    repository: 'git@bitbucket.org/a/b'
-  };
+var badProtocol = {
+  repository: 'badprotocol://a/b'
+};
 
-  nonGithub3 = {
-    repository: 'https://bitbucket.org/a/b'
-  };
+var bad = {};
+
+it('should parse github http', function() {
+  var repo = getPkgRepo(githubHttp);
+  assert.equal(repo.browse(), 'https://github.com/a/b');
+  assert.equal(repo.type, 'github');
 });
 
-it('should get repo url', function() {
-  var url = getPkgRepo(good);
-  assert.equal(url, 'https://github.com/a/b');
+it('should parse github https', function() {
+  var repo = getPkgRepo(githubHttps);
+  assert.equal(repo.browse(), 'https://github.com/a/b');
+  assert.equal(repo.type, 'github');
 });
 
-it('should work with github repo', function() {
-  var url = getPkgRepo(good2);
-  assert.equal(url, 'https://github.com/a/b');
+it('should parse github ssh', function() {
+  var repo = getPkgRepo(githubSsh);
+  assert.equal(repo.browse(), 'https://github.com/joyent/node');
+  assert.equal(repo.type, 'github');
 });
 
-it('should work with a json', function() {
-  var jsonData = JSON.stringify(good);
-  var url = getPkgRepo(jsonData);
-  assert.equal(url, 'https://github.com/a/b');
+it('should parse github svn', function() {
+  var repo = getPkgRepo(githubSvn);
+  assert.equal(repo.browse(), 'https://github.com/joyent/node');
+  assert.equal(repo.type, 'github');
+});
+
+it('should parse github short', function() {
+  var repo = getPkgRepo(githubShort);
+  assert.equal(repo.browse(), 'https://github.com/a/b');
+  assert.equal(repo.type, 'github');
+});
+
+it('should work with bitbucket', function() {
+  var repo = getPkgRepo(bitbucket);
+  assert.equal(repo.type, 'bitbucket');
+  assert.equal(repo.browse(), 'https://bitbucket.org/a/b');
 });
 
 it('should work if there is a typo', function() {
-  var url = getPkgRepo(typo, true);
-  assert.equal(url, 'https://github.com/a/b');
-});
-
-it('should warn if there is a typo', function(done) {
-  getPkgRepo(typo, true, function(warning) {
-    assert.equal(warning, 'repo should probably be repository.');
-    done();
-  });
-});
-
-it('should print warning by `console.warn.bind(console)`', function(done) {
-  console.warn = function(data) {
-    assert.equal(data, 'repo should probably be repository.');
-    done();
-  };
-
-  getPkgRepo(typo, true, true);
-});
-
-it('should error if cannot get repository', function() {
-  try {
-    getPkgRepo(bad);
-  } catch (e) {
-    assert.equal(e.toString(), 'Error: No repository: Could not get url');
-  }
-
+  var repo = getPkgRepo(typo, true);
+  assert.equal(repo.browse(), 'https://github.com/a/b');
+  assert.equal(repo.type, 'github');
 });
 
 it('should fix bad protocal', function() {
-  var url = getPkgRepo(badProtocol);
-  assert.equal(url, 'http://a/b');
+  var repo = getPkgRepo(badProtocol);
+  assert.equal(repo.browse(), 'http://a/b');
+  assert.equal(repo.type, undefined);
+  assert.equal(repo.protocol, 'badprotocol:');
 });
 
-it('should work with non-github repo', function() {
-  var url = getPkgRepo(nonGithub);
-  assert.equal(url, 'http://bitbucket.org/a/b');
+it('should work with a json', function() {
+  var jsonData = JSON.stringify(githubHttp);
+  var repo = getPkgRepo(jsonData);
+  assert.equal(repo.browse(), 'https://github.com/a/b');
+  assert.equal(repo.type, 'github');
 });
 
-it('should work with non-github repo with an @', function() {
-  var url = getPkgRepo(nonGithub2);
-  assert.equal(url, 'http://bitbucket.org/a/b');
-});
-
-it('should work with https non-github repo', function() {
-  var url = getPkgRepo(nonGithub3);
-  assert.equal(url, 'https://bitbucket.org/a/b');
+it('should error if cannot get repository', function() {
+  assert.throws(function() {
+    getPkgRepo(bad);
+  });
 });

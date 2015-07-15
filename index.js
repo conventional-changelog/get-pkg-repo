@@ -1,58 +1,48 @@
 'use strict';
 var normalizeData = require('normalize-package-data');
-var parseGithubUrl = require('github-url-from-git');
+var hostedGitInfo = require('hosted-git-info');
 var url = require('url');
-var forEach = require('lodash.foreach');
 var typos = require('./typos');
 
-function parseNonGithubUrl(nonGithubUrl) {
+function unknownHostedInfo(repoUrl) {
   try {
-    var idx = nonGithubUrl.indexOf('@');
-    if (idx !== -1) {
-      nonGithubUrl = nonGithubUrl.slice(idx + 1).replace(/:([^\d]+)/, '/$1');
+    var index = repoUrl.indexOf('@');
+    if (index !== -1) {
+      repoUrl = repoUrl.slice(index + 1).replace(/:([^\d]+)/, '/$1');
     }
-    nonGithubUrl = url.parse(nonGithubUrl);
-    var protocol = nonGithubUrl.protocol === 'https:' ?
-      'https:' : 'http:';
-    return protocol + '//' + (nonGithubUrl.host || '') +
-      nonGithubUrl.path.replace(/\.git$/, '');
-  } catch (err) {
-    // ignore
-  }
+
+    var info = url.parse(repoUrl);
+
+    info.browse = function() {
+      var protocol = info.protocol === 'https:' ? 'https:' : 'http:';
+      return protocol + '//' + (info.host || '') + info.path.replace(/\.git$/, '');
+    };
+
+    return info;
+  } catch (err) {}
 }
 
-function getPkgRepo(pkgData, fixTypo, warn) {
-  if (warn === true) {
-    warn = console.warn.bind(console);
-  } else {
-    warn = warn || function() {};
-  }
-
+function getPkgRepo(pkgData, fixTypo) {
   try {
     pkgData = JSON.parse(pkgData);
-  } catch (e) {}
+  } catch (err) {}
 
   if (fixTypo && !pkgData.repository) {
-    forEach(typos, function(val) {
+    typos.forEach(function(val) {
       if (pkgData[val]) {
-        warn(val + ' should probably be repository.');
         pkgData.repository = pkgData[val];
         return false;
       }
     });
   }
-
   normalizeData(pkgData);
 
-  var url = pkgData.repository && pkgData.repository.url;
-
-  if (typeof url !== 'string') {
-    throw new Error('No repository: Could not get url');
+  var repo = pkgData.repository;
+  if (!repo || !repo.url) {
+    throw new Error('No repository');
   }
 
-  return url.indexOf('github') > -1 ?
-    parseGithubUrl(url) :
-    parseNonGithubUrl(url);
+  return hostedGitInfo.fromUrl(repo.url) || unknownHostedInfo(repo.url);
 }
 
 module.exports = getPkgRepo;

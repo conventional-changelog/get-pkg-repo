@@ -1,45 +1,48 @@
 #!/usr/bin/env node
 'use strict';
-var forEach = require('lodash.foreach');
 var fs = require('fs');
 var getPkgRepo = require('./');
 var meow = require('meow');
 var through = require('through2');
+var util = require('util');
 
 var cli = meow({
   help: [
-    'Practice writing repoitory url or validate the repository url in a package.json file.',
+    'Practice writing repoitory url or validate the repository in a package.json file.',
     'If used without specifying a package.json file path, you will enter an interactive shell.',
-    'Otherwise, the normalized urls in the package.json files are printed.',
+    'Otherwise, the repository info in package.json is printed.',
     '',
     'Usage',
-    '  get-pkg-repo [--fix-typo] [--warn]',
-    '  get-pkg-repo [--fix-typo] [--warn] <path> [<path> ...]',
-    '  cat <path> | get-pkg-repo [--fix-typo] [--warn]',
+    '  get-pkg-repo',
+    '  get-pkg-repo <path> [<path> ...]',
+    '  cat <path> | get-pkg-repo',
     '',
     'Examples',
     '  get-pkg-repo',
     '  get-pkg-repo package.json',
-    '  cat package.json | get-pkg-repo --fix-typo'
-  ].join('\n')
+    '  cat package.json | get-pkg-repo --fix-typo',
+    '',
+    'Options',
+    '  -f, --fix-typo    Fix your typical typos automatically'
+  ]
 });
 
-var flags = cli.flags;
-var fixTypo = flags.fixTypo;
-var warn = flags.warn;
+var fixTypo = cli.flags.fixTypo;
 var input = cli.input;
 
 if (process.stdin.isTTY) {
-  if (input[0]) {
-    forEach(input, function(path) {
-      var url;
+  if (input.length > 0) {
+    input.forEach(function(path) {
+      var repo;
       fs.readFile(path, 'utf8', function(err, data) {
         if (err) {
           console.error(err);
+          return;
         }
+
         try {
-          url = getPkgRepo(data, fixTypo, warn);
-          console.log(path + ': ' + url);
+          repo = getPkgRepo(data, fixTypo);
+          console.log(repo);
         } catch (e) {
           console.error(path + ': ' + e.toString());
         }
@@ -47,32 +50,33 @@ if (process.stdin.isTTY) {
     });
   } else {
     process.stdin
-      .pipe(through(function(chunk, enc, callback) {
-        var url;
+      .pipe(through.obj(function(chunk, enc, cb) {
+        var repo;
         var pkgData = {
           repository: chunk.toString()
         };
+
         try {
-          url = getPkgRepo(pkgData, fixTypo, warn);
-          callback(null, url + '\n');
+          repo = getPkgRepo(pkgData, fixTypo);
+          cb(null, util.format(repo) + '\n');
         } catch (e) {
           console.error(e.toString());
-          callback(null);
+          cb();
         }
       }))
       .pipe(process.stdout);
   }
 } else {
   process.stdin
-    .pipe(through(function(chunk, enc, callback) {
-      var url;
+    .pipe(through.obj(function(chunk, enc, cb) {
+      var repo;
       try {
-        url = getPkgRepo(chunk.toString(), fixTypo, warn);
+        repo = getPkgRepo(chunk.toString(), fixTypo);
       } catch (e) {
         console.error(e.toString());
         process.exit(1);
       }
-      callback(null, url + '\n');
+      cb(null, util.format(repo) + '\n');
     }))
     .pipe(process.stdout);
 }

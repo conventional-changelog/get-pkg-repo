@@ -19,24 +19,33 @@
     "get-pkg-repo",
     "normalize",
     "fix",
+    "typo",
+    "hosted-git-info",
+    "repo",
+    "npm",
+    "git",
+    "info",
     "url",
     "package",
+    "pkg",
     "repository"
   ],
   "dependencies": {
-    "github-url-from-git": "^1.4.0",
-    "lodash.foreach": "^3.0.2",
-    "meow": "^3.1.0",
-    "normalize-package-data": "^2.0.0",
-    "through2": "^0.6.3"
+    "hosted-git-info": "^2.1.4",
+    "meow": "^3.3.0",
+    "normalize-package-data": "^2.3.0",
+    "through2": "^2.0.0"
   },
   "devDependencies": {
     "coveralls": "^2.11.2",
     "istanbul": "^0.3.13",
+    "jscs": "^1.13.1",
+    "jshint": "^2.8.0",
     "mocha": "*"
   },
   "scripts": {
-    "test": "mocha",
+    "lint": "jshint *.js --exclude node_modules && jscs *.js",
+    "test": "npm run-script lint && mocha",
     "coverage": "istanbul cover _mocha -- -R spec && rm -rf ./coverage"
   },
   "bin": {

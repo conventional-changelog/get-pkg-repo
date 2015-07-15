@@ -5,11 +5,12 @@
 
 ## Synopsis
 
-People usually have different formats of repository url in package.json and sometimes they even have a typo.
+People write different formats of repository url in package.json and sometimes there is even a typo.
 
-This module uses [normalize-package-data](https://github.com/npm/normalize-package-data), [github-url-from-git](https://github.com/tj/node-github-url-from-git) and [npm/repo](https://github.com/npm/npm/blob/master/lib/repo.js) to parse data. Please check them out for more details.
+This module uses [normalize-package-data](https://github.com/npm/normalize-package-data), [hosted-git-info](https://github.com/npm/hosted-git-info) and [npm/repo](https://github.com/npm/npm/blob/master/lib/repo.js) to parse data. Please check them out for more details.
 
 **This module can fix some common [typos](typos.json).**
+
 
 ## Install
 
@@ -29,22 +30,46 @@ fs.readFile('package.json', function(err, pkgData) {
     ...
   }
 
-  var url = getPkgRepo(pkgData);
-  console.log(url)
-  //=> https://github.com/stevemao/get-pkg-repo
+  var repo = getPkgRepo(pkgData);
+  console.log(repo)
+  /*=>
+  { type: 'github',
+    protocols: [ 'git', 'http', 'git+ssh', 'git+https', 'ssh', 'https' ],
+    domain: 'github.com',
+    treepath: 'tree',
+    filetemplate: 'https://{auth@}raw.githubusercontent.com/{user}/{project}/{committish}/{path}',
+    bugstemplate: 'https://{domain}/{user}/{project}/issues',
+    gittemplate: 'git://{auth@}{domain}/{user}/{project}.git{#committish}',
+    sshtemplate: 'git@{domain}:{user}/{project}.git{#committish}',
+    sshurltemplate: 'git+ssh://git@{domain}/{user}/{project}.git{#committish}',
+    browsetemplate: 'https://{domain}/{user}/{project}{/tree/committish}',
+    docstemplate: 'https://{domain}/{user}/{project}{/tree/committish}#readme',
+    httpstemplate: 'git+https://{auth@}{domain}/{user}/{project}.git{#committish}',
+    shortcuttemplate: '{type}:{user}/{project}{#committish}',
+    pathtemplate: '{user}/{project}{#committish}',
+    pathmatch: /^[/]([^/]+)[/]([^/]+?)(?:[.]git)?$/,
+    protocols_re: /^(git|http|git\+ssh|git\+https|ssh|https):$/,
+    user: 'stevemao',
+    auth: null,
+    project: 'get-pkg-repo',
+    committish: null,
+    default: 'https' }
+  */
 })
 ```
 
 
 ## API
 
-getPkgRepo(pkgData, [fixTypo, [warn]])
+getPkgRepo(pkgData, [fixTypo])
 
-Returns a string.
+Returns a hosted-git-info returned object if it matches a git host. If not returns a `url.parse` object with a `browse` function which returns the url that can be browsed.
 
 ### pkgData
 
-Type: `string` or `json`
+Type: `object` or `json`
+
+Package.json data
 
 ### fixTypo
 
@@ -52,14 +77,12 @@ Type: `boolean`
 
 If you want to fix your typical typos automatically, pass true. See [the list of predefined typos](typos.json).
 
-### warn
-
-Type: `function` or `boolean`
-
-If `fixTypo` is `true` you can also pass a warn function. `console.warn.bind(console)` is passed if it's true.
-
 
 ## CLI
+
+```sh
+$ npm install --global get-pkg-repo
+```
 
 You can use cli to see what your url will look like after being parsed.
 
@@ -68,19 +91,47 @@ You can enter interactive mode by typing
 ```sh
 $ get-pkg-repo
 github.com/stevemao/get-pkg-repo
-https://github.com/stevemao/get-pkg-repo
-
+{ protocol: null,
+  slashes: null,
+  auth: null,
+  host: null,
+  port: null,
+  hostname: null,
+  hash: null,
+  search: null,
+  query: null,
+  pathname: 'github.com/stevemao/get-pkg-repo',
+  path: 'github.com/stevemao/get-pkg-repo',
+  href: 'github.com/stevemao/get-pkg-repo',
+  browse: [Function] }
+https://nodejs.org/api/util.htm
+{ protocol: 'https:',
+  slashes: true,
+  auth: null,
+  host: 'nodejs.org',
+  port: null,
+  hostname: 'nodejs.org',
+  hash: null,
+  search: null,
+  query: null,
+  pathname: '/api/util.htm',
+  path: '/api/util.htm',
+  href: 'https://nodejs.org/api/util.htm',
+  browse: [Function] }
 ```
 
 You can also validate the repository url in your package.json by using the command followed by a package.json path. You can specify more than one path at a time.
 
 ```sh
-$ npm install --global get-pkg-repo
 $ get-pkg-repo package.json
-http://bitbucket.org/a/b
+{ type: 'github',
+  protocols: [ 'git', 'http', 'git+ssh', 'git+https', 'ssh', 'https' ],
+...
 # or
 $ cat package.json | get-pkg-repo --fix-typo
-https://github.com/stevemao/get-pkg-repo
+{ type: 'github',
+  protocols: [ 'git', 'http', 'git+ssh', 'git+https', 'ssh', 'https' ],
+...
 ```
 
 
