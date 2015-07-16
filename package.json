@@ -1,6 +1,6 @@
 {
   "name": "get-pkg-repo",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "Get repository url from package json data",
   "homepage": "https://github.com/stevemao/get-pkg-repo",
   "author": {
