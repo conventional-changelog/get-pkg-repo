@@ -92,34 +92,28 @@ You can enter interactive mode by typing
 
 ```sh
 $ get-pkg-repo
-github.com/stevemao/get-pkg-repo
-{ protocol: null,
-  slashes: null,
+https://github.com/stevemao/get-pkg-repo
+{ type: 'github',
+  protocols: [ 'git', 'http', 'git+ssh', 'git+https', 'ssh', 'https' ],
+  domain: 'github.com',
+  treepath: 'tree',
+  filetemplate: 'https://{auth@}raw.githubusercontent.com/{user}/{project}/{committish}/{path}',
+  bugstemplate: 'https://{domain}/{user}/{project}/issues',
+  gittemplate: 'git://{auth@}{domain}/{user}/{project}.git{#committish}',
+  sshtemplate: 'git@{domain}:{user}/{project}.git{#committish}',
+  sshurltemplate: 'git+ssh://git@{domain}/{user}/{project}.git{#committish}',
+  browsetemplate: 'https://{domain}/{user}/{project}{/tree/committish}',
+  docstemplate: 'https://{domain}/{user}/{project}{/tree/committish}#readme',
+  httpstemplate: 'git+https://{auth@}{domain}/{user}/{project}.git{#committish}',
+  shortcuttemplate: '{type}:{user}/{project}{#committish}',
+  pathtemplate: '{user}/{project}{#committish}',
+  pathmatch: /^[\/]([^\/]+)[\/]([^\/]+?)(?:[.]git)?$/,
+  protocols_re: /^(git|http|git\+ssh|git\+https|ssh|https):$/,
+  user: 'stevemao',
   auth: null,
-  host: null,
-  port: null,
-  hostname: null,
-  hash: null,
-  search: null,
-  query: null,
-  pathname: 'github.com/stevemao/get-pkg-repo',
-  path: 'github.com/stevemao/get-pkg-repo',
-  href: 'github.com/stevemao/get-pkg-repo',
-  browse: [Function] }
-https://nodejs.org/api/util.htm
-{ protocol: 'https:',
-  slashes: true,
-  auth: null,
-  host: 'nodejs.org',
-  port: null,
-  hostname: 'nodejs.org',
-  hash: null,
-  search: null,
-  query: null,
-  pathname: '/api/util.htm',
-  path: '/api/util.htm',
-  href: 'https://nodejs.org/api/util.htm',
-  browse: [Function] }
+  project: 'get-pkg-repo',
+  committish: null,
+  default: 'https' }
 ```
 
 You can also validate the repository url in your package.json by using the command followed by a package.json path. You can specify more than one path at a time.

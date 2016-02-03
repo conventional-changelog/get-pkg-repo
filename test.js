@@ -81,8 +81,6 @@ it('should fix bad protocal', function() {
   });
 
   assert.equal(repo.browse(), 'http://a/b');
-  assert.equal(repo.type, undefined);
-  assert.equal(repo.protocol, 'badprotocol:');
 });
 
 it('should work with a json', function() {

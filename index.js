@@ -11,14 +11,15 @@ function unknownHostedInfo(repoUrl) {
       repoUrl = repoUrl.slice(index + 1).replace(/:([^\d]+)/, '/$1');
     }
 
-    var info = url.parse(repoUrl);
+    var parsed = url.parse(repoUrl);
 
-    info.browse = function() {
-      var protocol = info.protocol === 'https:' ? 'https:' : 'http:';
-      return protocol + '//' + (info.host || '') + info.path.replace(/\.git$/, '');
+    var Info = function() {};
+    Info.prototype.browse = function() {
+      var protocol = parsed.protocol === 'https:' ? 'https:' : 'http:';
+      return protocol + '//' + (parsed.host || '') + parsed.path.replace(/\.git$/, '');
     };
 
-    return info;
+    return new Info();
   } catch (err) {}
 }
 
