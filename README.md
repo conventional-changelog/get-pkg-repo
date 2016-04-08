@@ -7,7 +7,7 @@
 
 People write different formats of repository url in package.json and sometimes there is even a typo.
 
-This module uses [normalize-package-data](https://github.com/npm/normalize-package-data), [hosted-git-info](https://github.com/npm/hosted-git-info) and [npm/repo](https://github.com/npm/npm/blob/master/lib/repo.js) to parse data. Please check them out for more details.
+This module extracts the code from [npm/repo](https://github.com/npm/npm/blob/master/lib/repo.js), and uses [normalize-package-data](https://github.com/npm/normalize-package-data) and [hosted-git-info](https://github.com/npm/hosted-git-info) to parse data. Please check them out for more details.
 
 **This module can fix some common [typos](typos.json).**
 
