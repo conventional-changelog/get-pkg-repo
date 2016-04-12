@@ -49,7 +49,7 @@ fs.readFile('package.json', function(err, pkgData) {
     httpstemplate: 'git+https://{auth@}{domain}/{user}/{project}.git{#committish}',
     shortcuttemplate: '{type}:{user}/{project}{#committish}',
     pathtemplate: '{user}/{project}{#committish}',
-    pathmatch: /^[/]([^/]+)[/]([^/]+?)(?:[.]git)?$/,
+    pathmatch: /^[\/]([^\/]+)[\/]([^\/]+?)(?:[.]git)?$/,
     protocols_re: /^(git|http|git\+ssh|git\+https|ssh|https):$/,
     user: 'stevemao',
     auth: null,
