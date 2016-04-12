@@ -8,11 +8,10 @@ var parse = function(url, fix) {
 };
 
 var assertRepo = function(repo, expected) {
-  assert.equal(repo.browse(), expected.browse);
-  assert.equal(repo.type, expected.type);
-  assert.equal(repo.user, expected.user);
-  assert.equal(repo.project, expected.project);
-  assert.equal(repo.committish, expected.committish);
+  assert.strictEqual(repo.browse(), expected.browse);
+  assert.strictEqual(repo.type, expected.type);
+  assert.strictEqual(repo.user, expected.user);
+  assert.strictEqual(repo.project, expected.project);
 };
 
 it('should parse github http', function() {
@@ -82,7 +81,7 @@ it('should parse https', function() {
 it('should parse a url with an @', function() {
   var repo = parse('a@b.com');
   assertRepo(repo, {
-    browse: 'http://b.com'
+    browse: 'http://a@b.com'
   });
 });
 
@@ -125,12 +124,11 @@ it('should error if cannot get repository', function() {
 });
 
 it('should parse github enterprise http url', function() {
-  var url = 'http://github.mycompany.dev/user/myRepo#123';
+  var url = 'http://github.mycompany.dev/user/myRepo';
   var repo = parse(url);
   assertRepo(repo, {
     browse: 'http://github.mycompany.dev/user/myRepo',
     user: 'user',
-    project: 'myRepo',
-    committish: '123',
+    project: 'myRepo'
   });
 });

@@ -5,27 +5,20 @@ var hostedGitInfo = require('hosted-git-info');
 var url = require('url');
 var typos = require('./typos');
 
-var GenericRepo = function(repository) {
-  var slug = parseSlug(repository);
-  this.url = url.parse(repository);
-  this.user = slug[0];
-  this.project = slug[1];
-  this.committish = slug[2];
-};
-
-GenericRepo.prototype.browse = function() {
-  var protocol = this.url.protocol === 'https:' ? 'https:' : 'http:';
-  return protocol + '//' + (this.url.host || '') + this.url.path.replace(/\.git$/, '');
-};
-
 function unknownHostedInfo(repoUrl) {
-  try {
-    var index = repoUrl.indexOf('@');
-    if (index !== -1) {
-      repoUrl = repoUrl.slice(index + 1).replace(/:([^\d]+)/, '/$1');
-    }
-    return new GenericRepo(repoUrl);
-  } catch (err) {}
+  var UnknownGitHost = function() {
+    var slug = parseSlug(repoUrl);
+    this.user = slug[0];
+    this.project = slug[1];
+  };
+
+  UnknownGitHost.prototype.browse = function() {
+    var parsed = url.parse(repoUrl);
+    var protocol = parsed.protocol === 'https:' ? 'https:' : 'http:';
+    return protocol + '//' + (parsed.host || '') + parsed.path.replace(/\.git$/, '');
+  };
+
+  return new UnknownGitHost();
 }
 
 function getPkgRepo(pkgData, fixTypo) {
