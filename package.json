@@ -31,7 +31,7 @@
     "repository"
   ],
   "dependencies": {
-    "@bahmutov/parse-github-repo-url": "^0.1.1",
+    "parse-github-repo-url": "^1.2.0",
     "hosted-git-info": "^2.1.4",
     "meow": "^3.3.0",
     "normalize-package-data": "^2.3.0",
