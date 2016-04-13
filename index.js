@@ -1,5 +1,5 @@
 'use strict';
-var parseSlug = require('@bahmutov/parse-github-repo-url');
+var parseSlug = require('parse-github-repo-url');
 var normalizeData = require('normalize-package-data');
 var hostedGitInfo = require('hosted-git-info');
 var url = require('url');
