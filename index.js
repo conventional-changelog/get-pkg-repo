@@ -6,16 +6,24 @@ var url = require('url');
 var typos = require('./typos');
 
 function unknownHostedInfo(repoUrl) {
+  var parsed = url.parse(repoUrl);
+  var protocol = parsed.protocol === 'https:' ? 'https:' : 'http:';
+  var host = parsed.host;
+  var browseUrl = protocol + '//' + (host || '') + parsed.path.replace(/\.git$/, '');
+
   var UnknownGitHost = function() {
     var slug = parseSlug(repoUrl);
+
+    if (host) {
+      this.domain = host;
+    }
+
     this.user = slug[0];
     this.project = slug[1];
   };
 
   UnknownGitHost.prototype.browse = function() {
-    var parsed = url.parse(repoUrl);
-    var protocol = parsed.protocol === 'https:' ? 'https:' : 'http:';
-    return protocol + '//' + (parsed.host || '') + parsed.path.replace(/\.git$/, '');
+    return browseUrl;
   };
 
   return new UnknownGitHost();
