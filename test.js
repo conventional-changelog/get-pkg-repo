@@ -144,3 +144,30 @@ it('should parse github enterprise http url', function() {
     project: 'myRepo'
   });
 });
+
+it('should parse simple unknown host', function() {
+  var url = 'https://unknown-host/';
+  var repo = parse(url);
+  assertRepo(repo, {
+    browse: 'https://unknown-host',
+    domain: 'unknown-host'
+  });
+});
+
+it('should parse complex unknown host', function() {
+  var url = 'https://stash.local/scm/conventional-changelog/conventional-changelog.git';
+  var repo = parse(url);
+  assertRepo(repo, {
+    browse: 'https://stash.local/scm/conventional-changelog/conventional-changelog',
+    domain: 'stash.local'
+  });
+});
+
+it('should parse weird unknown host', function() {
+  var url = 'https://unknown-host/.git';
+  var repo = parse(url);
+  assertRepo(repo, {
+    browse: 'https://unknown-host',
+    domain: 'unknown-host'
+  });
+});

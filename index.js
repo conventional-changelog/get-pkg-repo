@@ -9,7 +9,7 @@ function unknownHostedInfo(repoUrl) {
   var parsed = url.parse(repoUrl);
   var protocol = parsed.protocol === 'https:' ? 'https:' : 'http:';
   var host = parsed.host;
-  var browseUrl = protocol + '//' + (host || '') + parsed.path.replace(/\.git$/, '');
+  var browseUrl = protocol + '//' + (host || '') + parsed.path.replace(/\.git$/, '').replace(/\/$/, '');
 
   var UnknownGitHost = function() {
     var slug = parseSlug(repoUrl);
