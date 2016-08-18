@@ -48,6 +48,17 @@ it('should parse github ssh', function() {
   });
 });
 
+it('should parse private gitlab ssh', function() {
+  var repo = parse('git@gitlab.team.com:username/test.git');
+  assertRepo(repo, {
+    browse: 'https://gitlab.team.com/username/test',
+    domain: 'gitlab.team.com',
+    type: 'gitlab',
+    user: 'username',
+    project: 'test'
+  });
+});
+
 it('should parse github short', function() {
   var repo = parse('a/b');
   assertRepo(repo, {
@@ -141,7 +152,8 @@ it('should parse github enterprise http url', function() {
     browse: 'http://github.mycompany.dev/user/myRepo',
     domain: 'github.mycompany.dev',
     user: 'user',
-    project: 'myRepo'
+    project: 'myRepo',
+    type: 'github'
   });
 });
 

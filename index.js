@@ -5,21 +5,50 @@ var hostedGitInfo = require('hosted-git-info');
 var url = require('url');
 var typos = require('./typos');
 
-function unknownHostedInfo(repoUrl) {
+var gitAt = /^git@/;
+
+function gitAtToHttpsUrl(repoUrl) {
+  repoUrl = repoUrl.replace(':', '/');
+  repoUrl = repoUrl.replace(gitAt, 'https://');
+  return repoUrl;
+}
+
+function parseRepoUrl(repoUrl) {
   var parsed = url.parse(repoUrl);
+  if (!parsed.host) {
+    var gitAt = /^git@/;
+    if (gitAt.test(repoUrl)) {
+      parsed = url.parse(gitAtToHttpsUrl(repoUrl));
+    }
+  }
+  return parsed;
+}
+
+function getType(repoUrl) {
+  if (repoUrl.indexOf('github') !== -1) {
+    return 'github';
+  }
+  if (repoUrl.indexOf('gitlab') !== -1) {
+    return 'gitlab';
+  }
+}
+
+function unknownHostedInfo(repoUrl) {
+  var parsed = parseRepoUrl(repoUrl);
   var protocol = parsed.protocol === 'https:' ? 'https:' : 'http:';
-  var host = parsed.host;
-  var browseUrl = protocol + '//' + (host || '') + parsed.path.replace(/\.git$/, '').replace(/\/$/, '');
+  var browseUrl = protocol + '//' + (parsed.host || '') + parsed.path.replace(/\.git$/, '').replace(/\/$/, '');
 
   var UnknownGitHost = function() {
     var slug = parseSlug(repoUrl);
 
-    if (host) {
-      this.domain = host;
+    if (parsed.host) {
+      this.domain = parsed.host;
     }
 
     this.user = slug[0];
     this.project = slug[1];
+
+    this.type = getType(repoUrl);
   };
 
   UnknownGitHost.prototype.browse = function() {
