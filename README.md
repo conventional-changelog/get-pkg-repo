@@ -11,7 +11,7 @@ This module extracts the code from [npm/repo](https://github.com/npm/npm/blob/ma
 
 **This module can fix some common [typos](typos.json).**
 
-**If you find your normalized repository is not correct, It's most likely [normalize-package-data](https://github.com/npm/normalize-package-data) or [hosted-git-info](https://github.com/npm/hosted-git-info)'s problem. Please try to triage the problem before you open an issue here.**
+**If you find your normalized repository is not correct, It's most likely the underlying deps' problem. Please try to triage the problem before you open an issue here.**
 
 
 ## Install
