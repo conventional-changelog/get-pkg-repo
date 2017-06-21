@@ -75,7 +75,8 @@ function getPkgRepo(pkgData, fixTypo) {
 
   var repo = pkgData.repository;
   if (!repo || !repo.url) {
-    throw new Error('No repository');
+    throw new Error('No "repository" field found in your package.json file.' +
+      ' Please see https://docs.npmjs.com/files/package.json#repository for proper syntax.');
   }
 
   return hostedGitInfo.fromUrl(repo.url) || unknownHostedInfo(repo.url);
