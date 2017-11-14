@@ -45,9 +45,9 @@
     "mocha": "*"
   },
   "scripts": {
+    "coverage": "istanbul cover _mocha -- -R spec",
     "lint": "jshint *.js --exclude node_modules && jscs *.js",
-    "test": "npm run-script lint && mocha",
-    "coverage": "istanbul cover _mocha -- -R spec && rm -rf ./coverage"
+    "test": "npm run lint && npm run coverage"
   },
   "bin": {
     "get-pkg-repo": "cli.js"

@@ -1,11 +1,35 @@
-sudo: false
 language: node_js
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+cache:
+  directories:
+    - node_modules
+    - ${HOME}/.npm
+  yarn: true
+env:
+  global:
+    - CXX=g++-4.8
+  matrix:
+    - NPM_VERSION=2
+    - NPM_VERSION=3
+    - NPM_VERSION=4
+    - NPM_VERSION=5
+    - NPM_VERSION=next
+matrix:
+  fast_finish: true
+  allow_failures:
+    - env: NPM_VERSION=next
+    - node_js: "node"
 node_js:
-  - '5'
-  - '4'
-  - '3'
-  - '2'
-  - '1'
-  - '0.12'
-  - '0.10'
-after_script: NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+  - "4"
+  - "6"
+  - "8"
+  - "node"
+before_install:
+  - npm install --global npm@${NPM_VERSION}
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
