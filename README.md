@@ -1,18 +1,21 @@
 #  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][coveralls-image]][coveralls-url]
 
-> Get normalized repository from package json data
+> Get normalized repository URL from package json data
 
 
 ## Synopsis
 
-People write different formats of repository url in package.json and sometimes there is even a typo.
+People write the repository URL in their `package.json` file using different formats, and sometimes there is even a typo.
 
-This module extracts the code from [npm/repo](https://github.com/npm/npm/blob/master/lib/repo.js), and uses [normalize-package-data](https://github.com/npm/normalize-package-data), [hosted-git-info](https://github.com/npm/hosted-git-info) and [parse-github-repo-url](https://github.com/repo-utils/parse-github-repo-url) to parse data. Please check them out for more details.
+This module extracts the code from the [npm package manager](https://github.com/npm/npm/blob/master/lib/repo.js), and uses [normalize-package-data](https://github.com/npm/normalize-package-data), [hosted-git-info](https://github.com/npm/hosted-git-info) and [parse-github-repo-url](https://github.com/repo-utils/parse-github-repo-url), to parse the provided package input and return a repository URL object.
 
-**This module can fix some common [typos](typos.json).**
+If you are interested, please check those other packages for more details.
 
-**If you find your normalized repository is not correct, It's most likely the underlying deps' problem. Please try to triage the problem before you open an issue here.**
+For more information on which typos can be handled, please see [typos.json](typos.json).
 
+**This module mutates/normalizes the input using `normalize-package-data`.**
+
+**If you find the returned repository URL object is not correct, it's likely an issue with one of the libraries listed earlier. Please try to triage the problem before you open an issue here.**
 
 ## Install
 
@@ -32,6 +35,7 @@ fs.readFile('package.json', function(err, pkgData) {
     ...
   }
 
+  // Contents of `pkgData` are mutated/normalized by `normalize-package-data`.
   var repo = getPkgRepo(pkgData);
   console.log(repo)
   /*=>
@@ -63,22 +67,23 @@ fs.readFile('package.json', function(err, pkgData) {
 
 ## API
 
-getPkgRepo(pkgData, [fixTypo])
+`getPkgRepo(pkgData, [fixTypo])`
 
-Returns a hosted-git-info returned object if it matches a git host. If not returns a `url.parse` object with a `browse` function which returns the url that can be browsed.
+Returns a [`hosted-git-info`](https://github.com/npm/hosted-git-info) returned object if it matches a git host. If not, it returns a `url.parse` object with a `browse` function which returns the url that can be browsed.
 
 ### pkgData
 
 Type: `object` or `json`
 
-Package.json data
+Should be the contents of a `package.json` file.
+
+Contents of `pkgData` are mutated/normalized by `normalize-package-data`.
 
 ### fixTypo
 
 Type: `boolean`
 
 If you want to fix your typical typos automatically, pass true. See [the list of predefined typos](typos.json).
-
 
 ## CLI
 
