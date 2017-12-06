@@ -24,22 +24,25 @@ function parseRepoUrl(repoUrl) {
   return parsed;
 }
 
-function getType(repoUrl) {
-  if (repoUrl.indexOf('github') !== -1) {
+function getType(repo) {
+  if (repo.url.indexOf('github') !== -1) {
     return 'github';
   }
-  if (repoUrl.indexOf('gitlab') !== -1) {
+  if (repo.url.indexOf('gitlab') !== -1) {
     return 'gitlab';
+  }
+  if (repo.type === 'github' || repo.type === 'gitlab' ) {
+    return repo.type;
   }
 }
 
-function unknownHostedInfo(repoUrl) {
-  var parsed = parseRepoUrl(repoUrl);
+function unknownHostedInfo(repo) {
+  var parsed = parseRepoUrl(repo.url);
   var protocol = parsed.protocol === 'https:' ? 'https:' : 'http:';
   var browseUrl = protocol + '//' + (parsed.host || '') + parsed.path.replace(/\.git$/, '').replace(/\/$/, '');
 
   var UnknownGitHost = function() {
-    var slug = parseSlug(repoUrl);
+    var slug = parseSlug(repo.url);
 
     if (parsed.host) {
       this.domain = parsed.host;
@@ -48,7 +51,7 @@ function unknownHostedInfo(repoUrl) {
     this.user = slug[0];
     this.project = slug[1];
 
-    this.type = getType(repoUrl);
+    this.type = getType(repo);
   };
 
   UnknownGitHost.prototype.browse = function() {
@@ -79,7 +82,7 @@ function getPkgRepo(pkgData, fixTypo) {
       ' Please see https://docs.npmjs.com/files/package.json#repository for proper syntax.');
   }
 
-  return hostedGitInfo.fromUrl(repo.url) || unknownHostedInfo(repo.url);
+  return hostedGitInfo.fromUrl(repo.url) || unknownHostedInfo(repo);
 }
 
 module.exports = getPkgRepo;

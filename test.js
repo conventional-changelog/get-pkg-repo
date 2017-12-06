@@ -128,6 +128,50 @@ it('should work with a json', function() {
   });
 });
 
+it('should fallback to repository.type if valid', function() {
+  var jsonData = JSON.stringify({
+    repository: {
+      url: 'http://private.com/',
+      type: 'gitlab'
+    }
+  });
+  var repo = getPkgRepo(jsonData);
+  assertRepo(repo, {
+    browse: 'https://private.com/',
+    domain: 'private.com',
+    type: 'gitlab'
+  });
+});
+
+it('should not fallback to repository.type if invalid', function() {
+  var jsonData = JSON.stringify({
+    repository: {
+      url: 'http://private.com/',
+      type: 'garbage'
+    }
+  });
+  var repo = getPkgRepo(jsonData);
+  assertRepo(repo, {
+    browse: 'https://private.com/',
+    domain: 'private.com'
+  });
+});
+
+it('should override repository.type if autodetection works', function() {
+  var jsonData = JSON.stringify({
+    repository: {
+      url: 'http://github.com/',
+      type: 'gitlab'
+    }
+  });
+  var repo = getPkgRepo(jsonData);
+  assertRepo(repo, {
+    browse: 'https://private.com/',
+    domain: 'private.com',
+    type: 'github'
+  });
+});
+
 it('should work if there is a typo', function() {
   var repo = getPkgRepo({repo: 'a/b'}, true);
   assertRepo(repo, {
