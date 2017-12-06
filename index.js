@@ -31,7 +31,7 @@ function getType(repo) {
   if (repo.url.indexOf('gitlab') !== -1) {
     return 'gitlab';
   }
-  if (repo.type == 'github' || repo.type == 'gitlab' ) {
+  if (repo.type === 'github' || repo.type === 'gitlab' ) {
     return repo.type;
   }
 }
