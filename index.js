@@ -3,7 +3,7 @@ var parseSlug = require('parse-github-repo-url');
 var normalizeData = require('normalize-package-data');
 var hostedGitInfo = require('hosted-git-info');
 var url = require('url');
-var typos = require('./typos');
+var typos = ['repostitory', 'repostitorys', 'repositories', 'repostitories', 'repositorys', 'repo', 'repos'];
 
 var gitAt = /^git@/;
 
