@@ -11,7 +11,7 @@ This module extracts the code from the [npm package manager](https://github.com/
 
 If you are interested, please check those other packages for more details.
 
-For more information on which typos can be handled, please see [typos.json](typos.json).
+Common misspelling of the [repository](https://docs.npmjs.com/files/package.json#repository) field are also corrected (Please see the source code for available corrections.).
 
 **This module mutates/normalizes the input using `normalize-package-data`.**
 
@@ -83,7 +83,9 @@ Contents of `pkgData` are mutated/normalized by `normalize-package-data`.
 
 Type: `boolean`
 
-If you want to fix your typical typos automatically, pass true. See [the list of predefined typos](typos.json).
+If you want to fix your typical typos automatically pass `true`.
+
+> Please keep in mind that this feature may be removed in the future. The [`repository`](https://docs.npmjs.com/files/package.json#repository) field in `package.json` is well documented and it should be correctly spelled.
 
 ## CLI
 

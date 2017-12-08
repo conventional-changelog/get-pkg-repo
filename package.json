@@ -12,8 +12,7 @@
   "license": "MIT",
   "files": [
     "index.js",
-    "cli.js",
-    "typos.json"
+    "cli.js"
   ],
   "keywords": [
     "get-pkg-repo",
