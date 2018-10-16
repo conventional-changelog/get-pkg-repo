@@ -1,6 +1,6 @@
 {
   "name": "get-pkg-repo",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Get normalized repository from package json data",
   "homepage": "https://github.com/stevemao/get-pkg-repo",
   "author": {
