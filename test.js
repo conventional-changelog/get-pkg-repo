@@ -128,17 +128,6 @@ it('should work with a json', function() {
   });
 });
 
-it('should work if there is a typo', function() {
-  var repo = getPkgRepo({repo: 'a/b'}, true);
-  assertRepo(repo, {
-    browse: 'https://github.com/a/b',
-    domain: 'github.com',
-    type: 'github',
-    user: 'a',
-    project: 'b'
-  });
-});
-
 it('should error if cannot get repository', function() {
   assert.throws(function() {
     getPkgRepo({});

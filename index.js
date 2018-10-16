@@ -3,7 +3,6 @@ var parseSlug = require('parse-github-repo-url');
 var normalizeData = require('normalize-package-data');
 var hostedGitInfo = require('hosted-git-info');
 var url = require('url');
-var typos = ['repostitory', 'repostitorys', 'repositories', 'repostitories', 'repositorys', 'repo', 'repos'];
 
 var gitAt = /^git@/;
 
@@ -58,19 +57,11 @@ function unknownHostedInfo(repoUrl) {
   return new UnknownGitHost();
 }
 
-function getPkgRepo(pkgData, fixTypo) {
+function getPkgRepo(pkgData) {
   try {
     pkgData = JSON.parse(pkgData);
   } catch (err) {}
 
-  if (fixTypo && !pkgData.repository) {
-    typos.forEach(function(val) {
-      if (pkgData[val]) {
-        pkgData.repository = pkgData[val];
-        return false;
-      }
-    });
-  }
   normalizeData(pkgData);
 
   var repo = pkgData.repository;
