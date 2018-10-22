@@ -28,7 +28,7 @@
     "dev": "docker run --rm --user node -v \"$(pwd)\":/app -w /app -it node:6 sh -c \"yarn install; yarn test; bash\"",
     "test": "eslint src/ && nyc mocha --opts mocha.opts src/**/*.spec.js"
   },
-  "version": "4.0.0",
+  "version": "4.0.1",
   "dependencies": {
     "@hbetts/parse-repository-url": "^2.0.0",
     "hosted-git-info": "^2.1.4",
