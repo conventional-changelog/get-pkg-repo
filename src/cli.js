@@ -1,14 +1,16 @@
 #!/usr/bin/env node
-'use strict';
-var fs = require('fs');
-var getPkgRepo = require('./');
-var meow = require('meow');
-var through = require('through2');
-var util = require('util');
 
-var cli = meow({
+'use strict';
+
+const fs = require('fs');
+const getPkgRepo = require('./');
+const meow = require('meow');
+const through = require('through2');
+const util = require('util');
+
+const cli = meow({
   help: [
-    'Practice writing repoitory url or validate the repository in a package.json file.',
+    'Practice writing repository URL or validate the repository in a package.json file.',
     'If used without specifying a package.json file path, you will enter an interactive shell.',
     'Otherwise, the repository info in package.json is printed.',
     '',
@@ -20,28 +22,24 @@ var cli = meow({
     'Examples',
     '  get-pkg-repo',
     '  get-pkg-repo package.json',
-    '  cat package.json | get-pkg-repo --fix-typo',
-    '',
-    'Options',
-    '  -f, --fix-typo    Fix your typical typos automatically'
-  ]
+    '  cat package.json | get-pkg-repo',
+  ],
 });
 
-var fixTypo = cli.flags.fixTypo;
-var input = cli.input;
+const {input} = cli;
 
 if (process.stdin.isTTY) {
   if (input.length > 0) {
-    input.forEach(function(path) {
-      var repo;
-      fs.readFile(path, 'utf8', function(err, data) {
+    input.forEach(path => {
+      let repo;
+      fs.readFile(path, 'utf8', (err, data) => {
         if (err) {
           console.error(err);
           return;
         }
 
         try {
-          repo = getPkgRepo(data, fixTypo);
+          repo = getPkgRepo(JSON.parse(data));
           console.log(repo);
         } catch (e) {
           console.error(path + ': ' + e.toString());
@@ -50,14 +48,14 @@ if (process.stdin.isTTY) {
     });
   } else {
     process.stdin
-      .pipe(through.obj(function(chunk, enc, cb) {
-        var repo;
-        var pkgData = {
-          repository: chunk.toString()
+      .pipe(through.obj((chunk, enc, cb) => {
+        let repo;
+        const pkgData = {
+          repository: chunk.toString(),
         };
 
         try {
-          repo = getPkgRepo(pkgData, fixTypo);
+          repo = getPkgRepo(pkgData);
           cb(null, util.format(repo) + '\n');
         } catch (e) {
           console.error(e.toString());
@@ -68,10 +66,10 @@ if (process.stdin.isTTY) {
   }
 } else {
   process.stdin
-    .pipe(through.obj(function(chunk, enc, cb) {
-      var repo;
+    .pipe(through.obj((chunk, enc, cb) => {
+      let repo;
       try {
-        repo = getPkgRepo(chunk.toString(), fixTypo);
+        repo = getPkgRepo(JSON.parse(chunk.toString()));
       } catch (e) {
         console.error(e.toString());
         process.exit(1);

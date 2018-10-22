@@ -1,54 +1,51 @@
 {
-  "name": "get-pkg-repo",
-  "version": "3.0.0",
-  "description": "Get normalized repository from package json data",
-  "homepage": "https://github.com/stevemao/get-pkg-repo",
   "author": {
     "name": "Steve Mao",
     "email": "maochenyan@gmail.com",
     "url": "https://github.com/stevemao"
   },
-  "repository": "stevemao/get-pkg-repo",
-  "license": "MIT",
+  "bin": "./src/cli.js",
+  "bugs": "https://github.com/conventional-changelog/get-pkg-repo/issues",
+  "description": "Get repository user and project information from package.json file contents.",
+  "engines": {
+    "node": ">=6.9.0"
+  },
   "files": [
-    "index.js",
-    "cli.js"
+    "src/"
   ],
+  "homepage": "https://github.com/conventional-changelog/get-pkg-repo#readme",
   "keywords": [
-    "get-pkg-repo",
-    "normalize",
-    "fix",
-    "typo",
-    "hosted-git-info",
-    "repo",
-    "npm",
-    "git",
-    "info",
-    "url",
-    "package",
-    "pkg",
-    "repository"
+    "repository-url"
   ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "name": "get-pkg-repo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/conventional-changelog/get-pkg-repo.git"
+  },
+  "scripts": {
+    "dev": "docker run --rm --user node -v \"$(pwd)\":/app -w /app -it node:6 sh -c \"yarn install; yarn test; bash\"",
+    "test": "eslint src/ && nyc mocha --opts mocha.opts src/**/*.spec.js"
+  },
+  "version": "3.0.0",
   "dependencies": {
-    "parse-github-repo-url": "^1.3.0",
+    "@hbetts/parse-repository-url": "^2.0.0",
     "hosted-git-info": "^2.1.4",
     "meow": "^3.3.0",
-    "normalize-package-data": "^2.3.0",
     "through2": "^2.0.0"
   },
   "devDependencies": {
-    "coveralls": "^2.11.2",
-    "istanbul": "^0.4.2",
-    "jscs": "^2.9.0",
-    "jshint": "^2.8.0",
-    "mocha": "*"
-  },
-  "scripts": {
-    "coverage": "istanbul cover _mocha -- -R spec",
-    "lint": "jshint *.js --exclude node_modules && jscs *.js",
-    "test": "npm run lint && npm run coverage"
-  },
-  "bin": {
-    "get-pkg-repo": "cli.js"
+    "@hbetts/conventional-changelog-config": "^1.0.0",
+    "@hbetts/eslint-config": "^2.0.0",
+    "@hbetts/nyc-config": "^1.0.2",
+    "chai": "^4.0.2",
+    "codecov": "^3.0.0",
+    "debug": "^4.0.0",
+    "eslint": "^5.3.0",
+    "mocha": "^5.0.0",
+    "npm-publish-git-tag": "^2.1.14",
+    "nyc": "^13.0.0",
+    "semantic-release-github": "^4.0.17"
   }
 }
