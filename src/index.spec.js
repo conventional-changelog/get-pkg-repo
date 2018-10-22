@@ -137,6 +137,16 @@ describe(`get-pkg-repo`, () => {
     });
   });
 
+  it(`should parse unknown git URL`, () => {
+    const repository = getPkgRepo({repository: {url: `git@git.ourdomain.co:group1/group2/group3/project.git`}});
+    expect(repository).to.contain({
+      domain: `git.ourdomain.co`,
+      user: `group1/group2/group3`,
+      project: `project`,
+      type: null,
+    });
+  });
+
   it(`should parse simple unknown host`, () => {
     const repository = getPkgRepo({repository: {url: `https://unknown-host/`}});
     expect(repository).to.contain({
