@@ -30,7 +30,7 @@
   },
   "version": "4.0.1",
   "dependencies": {
-    "@hbetts/parse-repository-url": "^2.0.0",
+    "@hbetts/parse-repository-url": "^2.1.1",
     "hosted-git-info": "^2.1.4",
     "meow": "^3.3.0",
     "through2": "^2.0.0"

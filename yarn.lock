@@ -109,10 +109,10 @@
   resolved "https://registry.yarnpkg.com/@hbetts/nyc-config/-/nyc-config-1.0.13.tgz#0233e2a4419c29dc066122cf4ff14edfc1c89712"
   integrity sha512-WGp3eHdTDXjpPGzCkpLwvpPJpQe1f6t8YLNWZPLc01gAlkkozR2RsUkUZxEJc5we/PN8ejDEDTl17No8uMalsw==
 
-"@hbetts/parse-repository-url@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@hbetts/parse-repository-url/-/parse-repository-url-2.0.0.tgz#6a3808016f1a6194c8f95e1404d616c929276365"
-  integrity sha512-Nk4K8NS0C5f72ua/ztg8hxcsFahXUQLYR/IJ3PSS1G0hGwyBKtC+Y2HBImhu2y/CrtmLagdtEjksa5oATRCgLQ==
+"@hbetts/parse-repository-url@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@hbetts/parse-repository-url/-/parse-repository-url-2.1.1.tgz#5cb1e1c66696ce034f15e48aadb1d8e2cac5dfe3"
+  integrity sha512-Ocvd+Mhwb/MvO1uHas/vebzDzg8Emu+qzwyVCgqVgBoEohs6pO+BiIDqbT4U1PyGeKX7NTjwBqg+FF0iOGsD5A==
 
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
