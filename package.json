@@ -32,7 +32,7 @@
   "dependencies": {
     "@hbetts/parse-repository-url": "^2.1.1",
     "hosted-git-info": "^2.1.4",
-    "meow": "^3.3.0",
+    "meow": "^5.0.0",
     "through2": "^2.0.0"
   },
   "devDependencies": {
