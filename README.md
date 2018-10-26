@@ -44,8 +44,7 @@ There are two ways to use `github-metadata-sync`, either as a CLI tool, or progr
 
 **Programmatically**
 
-Package data must be passed as an object to `get-pkg-repo` function. If the contents of the `package.json` are a string, please
-pass it through `JSON.parse` first.
+Package data must be passed as an object to `get-pkg-repo` function. If the contents of the `package.json` are a string, please pass it through `JSON.parse` first.
 
 ```javascript
 const getPkgRepo = require(`get-pkg-repo`);
@@ -80,7 +79,7 @@ get-pkg-repo package.json
 
 _Locally_
 ```bash
-$(yarn bin)/$ get-pkg-repo package.json
+$(yarn bin)/get-pkg-repo package.json
 ```
 
 ```bash
