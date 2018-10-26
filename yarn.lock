@@ -110,9 +110,9 @@
   integrity sha512-WGp3eHdTDXjpPGzCkpLwvpPJpQe1f6t8YLNWZPLc01gAlkkozR2RsUkUZxEJc5we/PN8ejDEDTl17No8uMalsw==
 
 "@hbetts/parse-repository-url@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@hbetts/parse-repository-url/-/parse-repository-url-2.1.1.tgz#5cb1e1c66696ce034f15e48aadb1d8e2cac5dfe3"
-  integrity sha512-Ocvd+Mhwb/MvO1uHas/vebzDzg8Emu+qzwyVCgqVgBoEohs6pO+BiIDqbT4U1PyGeKX7NTjwBqg+FF0iOGsD5A==
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@hbetts/parse-repository-url/-/parse-repository-url-2.1.2.tgz#f78e6950529be9fd0b904fc90e06b078ddf4a847"
+  integrity sha512-e4GS7ATDwnrft2I99M0jV6/0YH8oVA943vWWXAHULhpzzBui29RgMBz4ZaFIY+L3BqW/6OTdlzTM88rFRq/RNg==
 
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
@@ -127,17 +127,15 @@ JSONStream@^1.0.4:
     jsonparse "^1.2.0"
     through ">=2.2.7 <3"
 
-acorn-jsx@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-4.1.1.tgz#e8e41e48ea2fe0c896740610ab6a4ffd8add225e"
-  integrity sha512-JY+iV6r+cO21KtntVvFkD+iqjtdpRUpGqKWgfkCdZq1R+kbreEl8EcdcJR4SmiIgsIQT33s6QzheQ9a275Q8xw==
-  dependencies:
-    acorn "^5.0.3"
+acorn-jsx@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.0.0.tgz#958584ddb60990c02c97c1bd9d521fce433bb101"
+  integrity sha512-XkB50fn0MURDyww9+UYL3c1yLbOBz0ZFvrdYlGB8l+Ije1oSC75qAqrzSPjYQbdnQUzhlUGNKuesryAv0gxZOg==
 
-acorn@^5.0.3, acorn@^5.6.0:
-  version "5.7.3"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
-  integrity sha512-T/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw==
+acorn@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.0.2.tgz#6a459041c320ab17592c6317abbfdf4bbaa98ca4"
+  integrity sha512-GXmKIvbrN3TV7aVqAzVFaMW8F8wzVX7voEBRO3bDA64+EX37YSayggRJP5Xig6HYHBkWKpFg9W5gg6orklubhg==
 
 ajv@^5.3.0:
   version "5.5.2"
@@ -972,9 +970,9 @@ eslint-visitor-keys@^1.0.0:
   integrity sha512-qzm/XxIbxm/FHyH341ZrbnMUpe+5Bocte9xkmFMzPMjRaZMcXww+MpBptFvtU+79L362nqiLhekCxCxDPaUMBQ==
 
 eslint@^5.3.0:
-  version "5.7.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-5.7.0.tgz#55c326d6fb2ad45fcbd0ce17c3846f025d1d819c"
-  integrity sha512-zYCeFQahsxffGl87U2aJ7DPyH8CbWgxBC213Y8+TCanhUTf2gEvfq3EKpHmEcozTLyPmGe9LZdMAwC/CpJBM5A==
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-5.8.0.tgz#91fbf24f6e0471e8fdf681a4d9dd1b2c9f28309b"
+  integrity sha512-Zok6Bru3y2JprqTNm14mgQ15YQu/SMDkWdnmHfFg770DIUlmMFd/gqqzCHekxzjHZJxXv3tmTpH0C1icaYJsRQ==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     ajv "^6.5.3"
@@ -1016,12 +1014,13 @@ eslint@^5.3.0:
     text-table "^0.2.0"
 
 espree@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/espree/-/espree-4.0.0.tgz#253998f20a0f82db5d866385799d912a83a36634"
-  integrity sha512-kapdTCt1bjmspxStVKX6huolXVV5ZfyZguY1lcfhVVZstce3bqxH9mcLzNn3/mlgW6wQ732+0fuG9v7h0ZQoKg==
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/espree/-/espree-4.1.0.tgz#728d5451e0fd156c04384a7ad89ed51ff54eb25f"
+  integrity sha512-I5BycZW6FCVIub93TeVY1s7vjhP9CY6cXCznIRfiig7nRviKZYdRnj/sHEWC6A7WE9RDWOFq9+7OsWSYz8qv2w==
   dependencies:
-    acorn "^5.6.0"
-    acorn-jsx "^4.1.1"
+    acorn "^6.0.2"
+    acorn-jsx "^5.0.0"
+    eslint-visitor-keys "^1.0.0"
 
 esprima@^4.0.0:
   version "4.0.1"
@@ -1226,15 +1225,14 @@ get-pkg-repo@^1.0.0:
     parse-github-repo-url "^1.3.0"
     through2 "^2.0.0"
 
-get-pkg-repo@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/get-pkg-repo/-/get-pkg-repo-2.0.0.tgz#afe80c3370b2576bbe69aa78aedbfb96d2d025f1"
-  integrity sha1-r+gMM3CyV2u+aap4rtv7ltLQJfE=
+get-pkg-repo@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/get-pkg-repo/-/get-pkg-repo-4.0.2.tgz#6cf2d71b5655b9c3a97c0057f4f04466f48971ab"
+  integrity sha512-elySPWAAyIUrOI0VL/pHYplWEfk60LcUc+D9bXc3rXrtYSh2zWucktz782riHR6TTVglr0vQ5dxyvCW6fzUQNw==
   dependencies:
+    "@hbetts/parse-repository-url" "^2.1.1"
     hosted-git-info "^2.1.4"
     meow "^3.3.0"
-    normalize-package-data "^2.3.0"
-    parse-github-repo-url "^1.3.0"
     through2 "^2.0.0"
 
 get-stdin@^4.0.1:
@@ -2868,48 +2866,48 @@ scoped-regex@^1.0.0:
   resolved "https://registry.yarnpkg.com/scoped-regex/-/scoped-regex-1.0.0.tgz#a346bb1acd4207ae70bd7c0c7ca9e566b6baddb8"
   integrity sha1-o0a7Gs1CB65wvXwMfKnlZra63bg=
 
-semantic-release-github-notifier@^7.0.0:
-  version "7.0.17"
-  resolved "https://registry.yarnpkg.com/semantic-release-github-notifier/-/semantic-release-github-notifier-7.0.17.tgz#c574e42bb60993a427fd873c3f789117d57903d9"
-  integrity sha512-0kjV9QPpYyy/Tai5uELNCxU9rmWWOt9tsJecr31nfbYcV8JDlN6c9T0uL/BnzlXcKcGfXJt0Yhy1ElBHGsJQeQ==
+semantic-release-github-notifier@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/semantic-release-github-notifier/-/semantic-release-github-notifier-7.1.0.tgz#dbd6cb6a3fa618ef9f089f42a813a16abd63af15"
+  integrity sha512-HIl2l9ewUJLdgswHkHyQOssVTNpCPhKyCgOVSPpmkEzNTqyEo6c1fOGuuqf0sTNRKCErGlA7BZz3zWtTL7P3SQ==
   dependencies:
     bluebird "^3.4.1"
     conventional-commits-parser "^3.0.0"
-    debug "^3.0.0"
-    get-pkg-repo "^2.0.0"
+    debug "^4.0.0"
+    get-pkg-repo "^4.0.2"
     gh-got "^7.0.0"
     lodash "^4.13.1"
     semver "^5.3.0"
     stream-array "^1.1.2"
     through2 "^2.0.1"
 
-semantic-release-github-releaser@^6.0.0:
-  version "6.0.14"
-  resolved "https://registry.yarnpkg.com/semantic-release-github-releaser/-/semantic-release-github-releaser-6.0.14.tgz#4a5c333afcd5f76bffd7878f01c0e167f728541b"
-  integrity sha512-JwzWAJpL6v+a6h3Ofz1ToiL8eWtG60h7nu2hGFZ5hs0tUpGLeFQHRw3LKM4Jo7R8vpeNdgM+5qDyxMCpjxg4BQ==
+semantic-release-github-releaser@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/semantic-release-github-releaser/-/semantic-release-github-releaser-6.1.0.tgz#9f52918675c36f450d89f0a047d13fa013faf4d2"
+  integrity sha512-XeYivoqj6iMoCS5AmyQHeXuKiuLG2sRozLF3cRbbHiF15kjfuKnCk/cjP79vKwdL0df2Dz+FmL5hgFyiN/tkoQ==
   dependencies:
     bluebird "^3.3.4"
     conventional-github-releaser "^3.0.0"
-    debug "^3.0.0"
-    get-pkg-repo "^2.0.0"
+    debug "^4.0.0"
+    get-pkg-repo "^4.0.2"
     lodash "^4.0.1"
 
 semantic-release-github@^4.0.17:
-  version "4.0.17"
-  resolved "https://registry.yarnpkg.com/semantic-release-github/-/semantic-release-github-4.0.17.tgz#46ac07b122ff83f7159ac1bc8670eae0ca972e52"
-  integrity sha512-EW4Q1KPSM7ENM3+/OR9cge/SexUW5hjVhbus9cr0h6Qb0T7CkBYhOOzdH/faoc12wYD1LkgETSlGJc0rMqkigQ==
+  version "4.0.18"
+  resolved "https://registry.yarnpkg.com/semantic-release-github/-/semantic-release-github-4.0.18.tgz#f1464eba849bd4af12a4cc80a828e863230fdfcc"
+  integrity sha512-iP9ZktCTHFTXBbmy04yYeSXosOUCU7Rcimqsf7Aw05JLczkXjY9vr0qxdVn82+WxMTSQeTr8rtwMN1XyVbeJeg==
   dependencies:
     bluebird "^3.3.4"
     commander "^2.9.0"
     conventional-changelog-angular "^5.0.0"
     conventional-commits-detector "^0.1.1"
     conventional-recommended-bump "^4.0.0"
-    debug "^3.0.0"
+    debug "^4.0.0"
     git-latest-semver-tag "^1.0.2"
     git-raw-commits "^2.0.0"
     lodash "^4.7.0"
-    semantic-release-github-notifier "^7.0.0"
-    semantic-release-github-releaser "^6.0.0"
+    semantic-release-github-notifier "^7.1.0"
+    semantic-release-github-releaser "^6.1.0"
     semver "^5.1.0"
     shelljs "^0.8.0"
     shifted-semver-increment "^2.0.0"
