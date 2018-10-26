@@ -2,7 +2,7 @@
 
 const {expect} = require(`chai`);
 const {describe, it} = require(`mocha`);
-const getPkgRepo = require(`./`);
+const getPkgRepo = require(`../`);
 
 describe(`get-pkg-repo`, () => {
   it(`should error if cannot get repository`, () => {

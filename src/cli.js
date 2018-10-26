@@ -3,7 +3,7 @@
 'use strict';
 
 const fs = require('fs');
-const getPkgRepo = require('./');
+const getPkgRepo = require('../');
 const meow = require('meow');
 const through = require('through2');
 const util = require('util');
