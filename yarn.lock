@@ -90,11 +90,6 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@hbetts/parse-repository-url@^2.1.1":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@hbetts/parse-repository-url/-/parse-repository-url-2.1.2.tgz#f78e6950529be9fd0b904fc90e06b078ddf4a847"
-  integrity sha512-e4GS7ATDwnrft2I99M0jV6/0YH8oVA943vWWXAHULhpzzBui29RgMBz4ZaFIY+L3BqW/6OTdlzTM88rFRq/RNg==
-
 "@hutson/conventional-changelog-config@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@hutson/conventional-changelog-config/-/conventional-changelog-config-2.0.0.tgz#3bde3cd4a12246f2648d42e17a57179679f925f0"
@@ -800,9 +795,9 @@ debug@^3.0.0, debug@^3.1.0:
     ms "^2.1.1"
 
 debug@^4.0.0, debug@^4.0.1, debug@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.0.tgz#373687bffa678b38b1cd91f861b63850035ddc87"
-  integrity sha512-heNPJUJIqC+xB6ayLAMHaIrmN9HKa7aQO8MGqKpvCA+uJYVcvR6l5kgdrhRuwPFHU7P5/A1w0BjByPHwpfTDKg==
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
+  integrity sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
   dependencies:
     ms "^2.1.1"
 
@@ -1195,13 +1190,13 @@ get-pkg-repo@^1.0.0:
     through2 "^2.0.0"
 
 get-pkg-repo@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/get-pkg-repo/-/get-pkg-repo-4.0.2.tgz#6cf2d71b5655b9c3a97c0057f4f04466f48971ab"
-  integrity sha512-elySPWAAyIUrOI0VL/pHYplWEfk60LcUc+D9bXc3rXrtYSh2zWucktz782riHR6TTVglr0vQ5dxyvCW6fzUQNw==
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/get-pkg-repo/-/get-pkg-repo-4.1.0.tgz#bd2b109e297af8ec541ba271607aab439f9a8610"
+  integrity sha512-BHJovsEz9igoxU9Idfa9XjKr0OuAfg6/wInYegP0/M3efsdVtKo1DipPebwnTZXtL9gzaPLvJv74J/U68yiiMg==
   dependencies:
-    "@hbetts/parse-repository-url" "^2.1.1"
+    "@hutson/parse-repository-url" "^3.0.0"
     hosted-git-info "^2.1.4"
-    meow "^3.3.0"
+    meow "^5.0.0"
     through2 "^2.0.0"
 
 get-stdin@^4.0.1:
