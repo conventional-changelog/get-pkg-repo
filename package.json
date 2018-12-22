@@ -30,15 +30,15 @@
   },
   "version": "4.0.2",
   "dependencies": {
-    "@hbetts/parse-repository-url": "^2.1.1",
+    "@hutson/parse-repository-url": "^3.0.0",
     "hosted-git-info": "^2.1.4",
     "meow": "^5.0.0",
     "through2": "^2.0.0"
   },
   "devDependencies": {
-    "@hbetts/conventional-changelog-config": "^1.0.0",
-    "@hbetts/eslint-config": "^2.0.0",
-    "@hbetts/nyc-config": "^1.0.2",
+    "@hutson/conventional-changelog-config": "^2.0.0",
+    "@hutson/eslint-config": "^3.0.0",
+    "@hutson/nyc-config": "^2.0.0",
     "chai": "^4.0.2",
     "codecov": "^3.0.0",
     "debug": "^4.0.0",
