@@ -1,7 +1,7 @@
 'use strict';
 
 const hostedGitInfo = require(`hosted-git-info`);
-const parseRepositoryURL = require(`@hbetts/parse-repository-url`);
+const parseRepositoryURL = require(`@hutson/parse-repository-url`);
 
 module.exports = packageData => {
   if (!packageData ||
