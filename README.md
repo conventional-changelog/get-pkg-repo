@@ -2,7 +2,7 @@
 
 > Get repository SCM platform, domain, user, and project information from package.json file contents.
 
-Extracts information from the `repository` field contained in the content of a `package.json` file using [`@hutson/parse-repository-url`](https://www.npmjs.com/package/@hutson/parse-repository-url) and [`hosted-git-info`](npmjs.com/package/hosted-git-info).
+Extracts information from the `repository` field contained in the content of a `package.json` file using [`@hutson/parse-repository-url`](https://www.npmjs.com/package/@hutson/parse-repository-url) and [`hosted-git-info`](https://www.npmjs.com/package/hosted-git-info).
 
 ## Table of Contents
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
