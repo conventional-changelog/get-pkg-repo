@@ -40,7 +40,7 @@ yarn [global] add [--dev] get-pkg-repo
 
 ## Usage
 
-There are two ways to use `github-metadata-sync`, either as a CLI tool, or programmatically.
+There are two ways to use `get-pkg-repo`, either as a CLI tool, or programmatically.
 
 **Programmatically**
 
