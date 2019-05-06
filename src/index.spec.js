@@ -47,6 +47,16 @@ describe(`get-pkg-repo`, () => {
     });
   });
 
+  it(`should parse gitlab https`, () => {
+    const repository = getPkgRepo({repository: `https://gitlab.com/hyper-expanse/semantic-release-gitlab-releaser.git`});
+    expect(repository).to.contain({
+      domain: `gitlab.com`,
+      type: `gitlab`,
+      user: `hyper-expanse`,
+      project: `semantic-release-gitlab-releaser`,
+    });
+  });
+
   it(`should parse github ssh`, () => {
     const repository = getPkgRepo({repository: {url: `git@github.com:joyent/node.git`}});
     expect(repository).to.contain({
