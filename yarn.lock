@@ -114,6 +114,11 @@
   resolved "https://registry.yarnpkg.com/@hutson/parse-repository-url/-/parse-repository-url-3.0.0.tgz#3fa172e3006f36e547fb49835bf25fc487a29f1c"
   integrity sha512-gIKsI1Pd9O3uazccWD0KPMMMwNk+PncJRSKEFdtzaKTgehMuw5Lm1O6SK39vg1u9iFWOzofE+DxcrttXeAW1KQ==
 
+"@hutson/parse-repository-url@^4.0.0":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@hutson/parse-repository-url/-/parse-repository-url-4.0.2.tgz#ece3ccbf3c621df9316e3ac566c0bbcae130426a"
+  integrity sha512-1uWadDcVvqrl8fjCjHsHS6iYJgpjDCgs+JnV7RxlFPqmxNuxF9OEzb5+15Dibrdw+SWUrrEVSPGqUpypXH4g6Q==
+
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
