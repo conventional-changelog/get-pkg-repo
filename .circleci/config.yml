@@ -1,12 +1,12 @@
 version: 2
 
-node_6: &node_6
+node_10: &node_10
   docker:
-    - image: node:6@sha256:8e1b8e95da71b9d27ebd9a3e8d4bafb77ca15d770e0bc2698e45476bc132cd5d
+    - image: node:10
 
-node_8: &node_8
+node_12: &node_12
   docker:
-    - image: node:8@sha256:6b2c3d78f4e77fb1ef1e3058affdd1d3ba0b319b5eaf479167672914e555e346
+    - image: node:12
 
 node_next: &node_next
   docker:
@@ -28,10 +28,10 @@ test_plan: &test_plan
     - run: $(yarn bin)/codecov || echo "CodeCov did not collect coverage reports"
 
 jobs:
-  node_6_test_plan:
-    <<: [*node_6, *test_plan]
-  node_8_test_plan:
-    <<: [*node_8, *test_plan]
+  node_10_test_plan:
+    <<: [*node_10, *test_plan]
+  node_12_test_plan:
+    <<: [*node_12, *test_plan]
   node_next_test_plan:
     <<: [*node_next, *test_plan]
 
@@ -39,6 +39,6 @@ workflows:
   version: 2
   build:
     jobs:
-      - node_6_test_plan
-      - node_8_test_plan
+      - node_10_test_plan
+      - node_12_test_plan
       - node_next_test_plan
