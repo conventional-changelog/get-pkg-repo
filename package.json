@@ -42,8 +42,8 @@
   "dependencies": {
     "@hutson/parse-repository-url": "^3.0.0",
     "hosted-git-info": "^4.0.0",
-    "meow": "^7.0.0",
-    "through2": "^2.0.0"
+    "through2": "^2.0.0",
+    "yargs": "^17.0.1"
   },
   "devDependencies": {
     "@hutson/conventional-changelog-config": "^2.0.0",
