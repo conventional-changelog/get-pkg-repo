@@ -1,8 +1,6 @@
-'use strict';
-
-const {expect} = require(`chai`);
-const {describe, it} = require(`mocha`);
-const getPkgRepo = require(`../`);
+import {expect} from 'chai';
+import {describe, it} from 'mocha';
+import getPkgRepo from './index.js';
 
 describe(`get-pkg-repo`, () => {
   it(`should error if cannot get repository`, () => {
