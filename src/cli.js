@@ -8,7 +8,7 @@ import getPkgRepo from './index.js';
 
 const yargs = _yargs(process.argv.slice(2))
   .usage(
-    '\nPractice writing repository URL or validate the repository in a package.json file. If used without specifying a package.json file path, you will enter an interactive shell. Otherwise, the repository info in package.json is printed.'
+    '\nPractice writing repository URL or validate the repository in a package.json file. If used without specifying a package.json file path, you will enter an interactive shell. Otherwise, the repository info in package.json is printed.',
   )
   .scriptName('get-pkg-repo')
   .command('$0')
@@ -54,7 +54,7 @@ if (process.stdin.isTTY) {
             console.error(e.toString());
             cb();
           }
-        })
+        }),
       )
       .pipe(process.stdout);
   }
@@ -70,7 +70,7 @@ if (process.stdin.isTTY) {
           process.exit(1);
         }
         cb(null, format(repo) + '\n');
-      })
+      }),
     )
     .pipe(process.stdout);
 }
