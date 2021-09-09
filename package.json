@@ -8,7 +8,7 @@
   "bugs": "https://github.com/conventional-changelog/get-pkg-repo/issues",
   "description": "Get repository user and project information from package.json file contents.",
   "engines": {
-    "node": ">=6.9.0"
+    "node": ">=12"
   },
   "files": [
     "src/"
