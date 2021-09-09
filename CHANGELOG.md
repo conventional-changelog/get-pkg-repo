@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://www.github.com/conventional-changelog/get-pkg-repo/compare/v4.2.0...v5.0.0) (2021-09-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* node 12 is now minimum engine (#70)
+
+### Features
+
+* node 12 is now minimum engine ([#70](https://www.github.com/conventional-changelog/get-pkg-repo/issues/70)) ([de257f7](https://www.github.com/conventional-changelog/get-pkg-repo/commit/de257f7afc9e7877546bc46abea057069aceb429))
+
 ## [4.2.0](https://www.github.com/conventional-changelog/get-pkg-repo/compare/v4.1.2...v4.2.0) (2021-09-03)
 
 
