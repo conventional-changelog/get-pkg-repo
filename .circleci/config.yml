@@ -2,7 +2,7 @@ version: 2
 
 node_12: &node_12
   docker:
-    - image: node:12
+    - image: node:16
 
 node_next: &node_next
   docker:
