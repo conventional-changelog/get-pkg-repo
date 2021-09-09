@@ -1,7 +1,7 @@
 on:
    push:
      branches:
-       - 16.x.x
+       - 4.x
 name: release-please
 jobs:
   release-please:
