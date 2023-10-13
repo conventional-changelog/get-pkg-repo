@@ -1,5 +1,12 @@
 # Changelog
 
+### [5.0.1](https://www.github.com/conventional-changelog/get-pkg-repo/compare/v5.0.0...v5.0.1) (2023-10-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency hosted-git-info to v7 ([#84](https://www.github.com/conventional-changelog/get-pkg-repo/issues/84)) ([3c8f216](https://www.github.com/conventional-changelog/get-pkg-repo/commit/3c8f2163d374fe9063dc50ca5e35e9884018c4e8))
+
 ## [5.0.0](https://www.github.com/conventional-changelog/get-pkg-repo/compare/v4.2.0...v5.0.0) (2021-09-09)
 
 
