@@ -41,7 +41,7 @@
   "version": "5.0.0",
   "dependencies": {
     "@hutson/parse-repository-url": "^3.0.0",
-    "hosted-git-info": "^4.0.0",
+    "hosted-git-info": "^7.0.0",
     "through2": "^2.0.0",
     "yargs": "^17.0.1"
   },
