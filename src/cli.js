@@ -3,8 +3,8 @@
 'use strict';
 
 const fs = require(`fs`);
+const { Transform, Writable } = require(`stream`);
 const getPkgRepo = require(`../`);
-const through = require(`through2`);
 const util = require(`util`);
 
 const yargs = require('yargs/yargs')(process.argv.slice(2))
@@ -24,7 +24,6 @@ const input = yargs._;
 if (process.stdin.isTTY) {
   if (input.length > 0) {
     input.forEach(path => {
-      let repo;
       fs.readFile(path, 'utf8', (err, data) => {
         if (err) {
           console.error(err);
@@ -32,7 +31,7 @@ if (process.stdin.isTTY) {
         }
 
         try {
-          repo = getPkgRepo(JSON.parse(data));
+          const repo = getPkgRepo(JSON.parse(data));
           console.log(repo);
         } catch (e) {
           console.error(`${path}: ${e.toString()}`);
@@ -41,37 +40,32 @@ if (process.stdin.isTTY) {
     });
   } else {
     process.stdin
-      .pipe(
-        through.obj((chunk, enc, cb) => {
-          let repo;
-          const pkgData = {
-            repository: chunk.toString(),
-          };
-
+      .pipe(new Transform({
+        objectMode: true,
+        transform(chunk, enc, cb) {
           try {
-            repo = getPkgRepo(pkgData);
+            const pkgData = { repository: chunk.toString() };
+            const repo = getPkgRepo(pkgData);
             cb(null, util.format(repo) + '\n');
           } catch (e) {
             console.error(e.toString());
             cb();
           }
-        })
-      )
+        }
+      }))
       .pipe(process.stdout);
   }
 } else {
-  process.stdin
-    .pipe(
-      through.obj((chunk, enc, cb) => {
-        let repo;
-        try {
-          repo = getPkgRepo(JSON.parse(chunk.toString()));
-        } catch (e) {
-          console.error(e.toString());
-          process.exit(1);
-        }
-        cb(null, util.format(repo) + '\n');
-      })
-    )
-    .pipe(process.stdout);
+  process.stdin.pipe(new Writable({
+    write(chunk, enc, cb) {
+      try {
+        const repo = getPkgRepo(JSON.parse(chunk.toString()));
+        process.stdout.write(util.format(repo) + '\n');
+        cb();
+      } catch (e) {
+        console.error(e.toString());
+        process.exit(1);
+      }
+    }
+  }));
 }
